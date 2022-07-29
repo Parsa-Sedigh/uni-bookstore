@@ -1,0 +1,1 @@
+export interface ErrMessageProps extends ErrorMessageProps {}

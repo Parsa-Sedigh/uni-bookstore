@@ -1,0 +1,40 @@
+@font-face {
+  font-family: iran-yekan;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/iran-yekan.ttf");
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  line-height: 1.6;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  box-sizing: border-box;
+  //min-height: 100vh;
+
+  & * {
+    font-family: iran-yekan, serif;
+  }
+}
+
+
+#__next {
+  height: 100%;
+}

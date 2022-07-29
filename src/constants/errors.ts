@@ -1,0 +1,1 @@
+export const REQUIRED_ERR_MSG = 'این فیلد اجباری است.';
