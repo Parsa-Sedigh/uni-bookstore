@@ -1,11 +1,46 @@
-import Link from 'next/link';
+import {GetServerSideProps} from "next";
+import axios from "axios";
+import styles from "./Dashboard.module.scss";
+import {BookCard} from "../../components/BookCard/BookCard";
+import {useEffect} from "react";
+import useRouterRefresh from "../../hooks/useRouterRefresh";
 
-const Dashboard = () => {
+export const getServerSideProps: GetServerSideProps = async () => {
+    try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/books`);
+        console.log('hello: ', response.data);
 
+        return {
+            props: {books: response.data}
+        };
+    } catch (error) {
+        console.log('error: ', error);
+        return {
+            props: {error}
+        };
+    }
+};
+
+const Dashboard = (props: { books?: any[], error?: boolean, fetchBooks: null | {} }) => {
+    const {books, fetchBooks} = props;
+    const refetch = useRouterRefresh();
+    console.log('books in page:', books);
+
+    useEffect(() => {
+        if (fetchBooks) {
+            console.log('refetching ...');
+            refetch();
+        }
+    }, [fetchBooks, refetch]);
 
     return (
-        <div>
-
+        <div className={styles.container}>
+            {books?.map((book) => <BookCard key={book.id}
+                                            id={book.id}
+                                            title={book.title}
+                                            image={book.image}
+                                            price={book.price}
+                                            actions={{edit: true, delete: true}}/>)}
         </div>
     );
 };

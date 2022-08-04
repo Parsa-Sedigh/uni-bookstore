@@ -15,9 +15,15 @@ const Field = (props: FieldProps) => {
             return <TextField error={showFieldError}
                               helperText={showFieldError && errors[name].message}
                               FormHelperTextProps={{classes: {root: styles['helper-text']}}}
+                              InputProps={{
+                                  classes: {root: styles['text-field']}
+                              }}
+                              InputLabelProps={{
+                                  classes: {root: styles.label}
+                              }}
                               {...otherProps}
                               {...field}
-                              classes={{root: clsx(otherProps.classes?.root, styles['text-field'])}}/>;
+                              classes={{root: clsx(otherProps.classes?.root)}}/>;
         }}/>
     );
 };
