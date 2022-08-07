@@ -6,17 +6,17 @@ import {Button, Card, Typography} from "@mui/material";
 import styles from './BookDetailPage.module.scss';
 import {ShoppingBasketRounded} from '@mui/icons-material';
 
-export const getServerSideProps: GetServerSideProps = async ({params}) => {
-    try {
-        const response = await axios.get(`http://localhost:3001/books/${params?.id}`);
-
-        return {props: {book: response.data, error: false}};
-    } catch (err) {
-        console.error(err);
-
-        return {props: {book: null, error: true}};
-    }
-}
+// export const getServerSideProps: GetServerSideProps = async ({params}) => {
+//     try {
+//         const response = await axios.get(`http://localhost:3001/books/${params?.id}`);
+//
+//         return {props: {book: response.data, error: false}};
+//     } catch (err) {
+//         console.error(err);
+//
+//         return {props: {book: null, error: true}};
+//     }
+// }
 
 const BookDetailPage: NextPage = (props: {book?: any, error?: boolean}) => {
     const {book, error} = props;

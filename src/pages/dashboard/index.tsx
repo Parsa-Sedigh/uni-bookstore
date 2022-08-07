@@ -6,21 +6,21 @@ import {useEffect} from "react";
 import useRouterRefresh from "../../hooks/useRouterRefresh";
 import {BOOKS} from "../../constants";
 
-export const getServerSideProps: GetServerSideProps = async () => {
-    try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/books`);
-        console.log('hello: ', response.data);
-
-        return {
-            props: {books: response.data}
-        };
-    } catch (error) {
-        console.log('error: ', error);
-        return {
-            props: {books: [], error: true}
-        };
-    }
-};
+// export const getServerSideProps: GetServerSideProps = async () => {
+//     try {
+//         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/books`);
+//         console.log('hello: ', response.data);
+//
+//         return {
+//             props: {books: response.data}
+//         };
+//     } catch (error) {
+//         console.log('error: ', error);
+//         return {
+//             props: {books: [], error: true}
+//         };
+//     }
+// };
 
 const Dashboard = (props: { books?: any[], error?: boolean, fetchBooks: null | {} }) => {
     const {books, fetchBooks} = props;

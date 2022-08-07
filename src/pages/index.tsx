@@ -6,21 +6,21 @@ import axios from "axios";
 import {BookCard} from "../components/BookCard/BookCard";
 import {BOOKS} from "../constants";
 
-export const getServerSideProps: GetServerSideProps = async () => {
-    try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL as string}/books`);
-        console.log('response: ', response.data);
-
-        return {
-            props: {books: response.data}
-        };
-    } catch (error) {
-        console.log('error: ', error);
-        return {
-            props: {error: true}
-        };
-    }
-};
+// export const getServerSideProps: GetServerSideProps = async () => {
+//     try {
+//         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL as string}/books`);
+//         console.log('response: ', response.data);
+//
+//         return {
+//             props: {books: response.data}
+//         };
+//     } catch (error) {
+//         console.log('error: ', error);
+//         return {
+//             props: {error: true}
+//         };
+//     }
+// };
 
 const Home: NextPage = (props: {books?: any[], error?: boolean}) => {
     console.log('Home: ', props);
