@@ -4,6 +4,7 @@ import styles from "./Dashboard.module.scss";
 import {BookCard} from "../../components/BookCard/BookCard";
 import {useEffect} from "react";
 import useRouterRefresh from "../../hooks/useRouterRefresh";
+import {BOOKS} from "../../constants";
 
 export const getServerSideProps: GetServerSideProps = async () => {
     try {
@@ -16,7 +17,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     } catch (error) {
         console.log('error: ', error);
         return {
-            props: {error}
+            props: {books: [], error: true}
         };
     }
 };
@@ -24,7 +25,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
 const Dashboard = (props: { books?: any[], error?: boolean, fetchBooks: null | {} }) => {
     const {books, fetchBooks} = props;
     const refetch = useRouterRefresh();
-    console.log('books in page:', books);
 
     useEffect(() => {
         if (fetchBooks) {
@@ -35,9 +35,9 @@ const Dashboard = (props: { books?: any[], error?: boolean, fetchBooks: null | {
 
     return (
         <div className={styles.container}>
-            {books?.map((book) => <BookCard key={book.id}
+            {BOOKS?.map((book, index) => <BookCard key={book.id}
                                             id={book.id}
-                                            title={book.title}
+                                            title={`${book.title} ${index + 1}`}
                                             image={book.image}
                                             price={book.price}
                                             actions={{edit: true, delete: true}}/>)}

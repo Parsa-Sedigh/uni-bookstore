@@ -4,6 +4,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import axios from "axios";
 import {BookCard} from "../components/BookCard/BookCard";
+import {BOOKS} from "../constants";
 
 export const getServerSideProps: GetServerSideProps = async () => {
     try {
@@ -23,11 +24,11 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
 const Home: NextPage = (props: {books?: any[], error?: boolean}) => {
     console.log('Home: ', props);
-    const {books} = props;
+    // const {books} = props;
 
     return (
         <div className={styles.container}>
-            {books?.map((book, index) => <BookCard key={index} id={book.id} title={book.title} image={book.image} price={book.price}/>)}
+            {BOOKS?.map((book, index) => <BookCard key={index} id={book.id} title={`${book.title} ${index + 1}`} image={book.image} price={book.price}/>)}
         </div>
     )
 }

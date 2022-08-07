@@ -6,7 +6,7 @@ export const loader = ({ src, width = 200, quality = 75 }: ImageLoaderProps) => 
 
     try {
         const url = new URL(src);
-        return defaultUrl;
+        return `${src}`;
     } catch {
         return `${DEFAULT_BOOK_IMAGE_URL}`;
     }

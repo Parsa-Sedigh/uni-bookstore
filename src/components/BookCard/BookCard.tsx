@@ -40,7 +40,7 @@ export const BookCard = (props: BookCardProps) => {
 
             <CardContent>
                 <Typography classes={{root: styles.title}}>{title}</Typography>
-                <Typography classes={{root: styles.price}}>{price} ریال</Typography>
+                <Typography classes={{root: styles.price}}>{price.toLocaleString('fa-IR')} ریال</Typography>
             </CardContent>
 
             {actions &&

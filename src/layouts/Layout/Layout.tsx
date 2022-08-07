@@ -18,14 +18,16 @@ import {useDialogUpdater} from "../../hooks/useDialogUpdater";
 import CloseIcon from '@mui/icons-material/Close';
 import axios from "axios";
 import {useState} from "react";
+import {useHasMounted} from "../../hooks/useHasMounted";
 
 export const Layout = ({children, setFetchBooks}: LayoutProps) => {
     const dialogState = useDialogState();
     const dialogUpdater = useDialogUpdater();
+    const hasMounted = useHasMounted();
     let accessToken = '';
 
-    if (typeof window !== 'undefined') {
-        accessToken = localStorage.getItem('access_token');
+    if (hasMounted) {
+        accessToken = localStorage.getItem('access_token') || '';
     }
 
     const onCloseDialog = () => {
